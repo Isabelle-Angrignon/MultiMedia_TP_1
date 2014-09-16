@@ -78,6 +78,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Convertisseur.h" />
+    <ClInclude Include="Sommet.h" />
+    <ClInclude Include="Terrain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Convertisseur.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sommet.cpp" />
+    <ClCompile Include="Terrain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
