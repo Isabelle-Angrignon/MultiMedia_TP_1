@@ -10,19 +10,22 @@ class CTerrain
 {
 private:
 	const float ECHELLE = 1.0f;
-	
-	int * _tabIndex;
 	int _nbrPolygone;
 	
 public:
 	static const int DIMMENSIONX = 257;
 	static const int DIMMENSIONY = 257;
-	CSommet  _tabSommet;////////////////////////////////////////////enlevé étoile
+	CSommet  *_tabSommet;
+	int * _tabIndex;
 	void setNbrPolygone(int nbrPolygone);
 	int getNbrPolygone();
 	CTerrain();
 	~CTerrain();
 	void definitionHauteur(); // convertisseur qui fait sa ? 
+
+	XMFLOAT3 CalculNormale(int x, int y);
+
+	XMVECTOR ObtenirPosition(int x, int y);
 
 };
 

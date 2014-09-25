@@ -22,9 +22,9 @@ int main() {
 
 	ConstruireHauteursTerrain(tabByte, leTerrain);
 
-	CalculerNormales(leTerrain);  
+	EnregistrerTout(leTerrain); 
 
-	EnregistrerTout(leTerrain);   
+	LireTout();
 	
 	return 0;
 }

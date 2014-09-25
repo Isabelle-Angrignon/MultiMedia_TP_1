@@ -14,7 +14,7 @@ using namespace std;
 char* LireFichierHeightmap(string fichier);
 
 void ConstruireHauteursTerrain(char* tabByte, CTerrain &leTerrain);
-
-void CalculerNormales(CTerrain &leTerrain);
     
 void EnregistrerTout(CTerrain &leTerrain);
+
+void LireTout();

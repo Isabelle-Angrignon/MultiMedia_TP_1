@@ -5,11 +5,10 @@
 
 #include "Terrain.h"
 
-
 CTerrain::CTerrain()
 {
 	_tabSommet = new CSommet[DIMMENSIONX * DIMMENSIONY];
-	_tabIndex = new int[DIMMENSIONX * DIMMENSIONY * 6];
+	_tabIndex = new int[(DIMMENSIONX-1) * (DIMMENSIONY-1) * 6];
 	XMFLOAT3 t;
 	XMFLOAT3 n;
 	t.z = 0.0f;
@@ -25,6 +24,7 @@ CTerrain::CTerrain()
 			t.x = x * ECHELLE;
 			_tabSommet[y*DIMMENSIONY + x].setPos(t);
 			_tabSommet[y*DIMMENSIONY + x].setNormal(n);
+
 			// Initialisation de l'index
 			if (x < DIMMENSIONX - 1 && y < DIMMENSIONY - 1)
 			{
@@ -52,4 +52,39 @@ int CTerrain::getNbrPolygone()
 CTerrain::~CTerrain()
 {
 	delete[] _tabSommet;
+}
+// XMLODA
+
+XMVECTOR CTerrain::ObtenirPosition(int x, int y)
+{
+	return XMLoadFloat3(&(_tabSommet[y*DIMMENSIONY + x].getPos()));
+}
+
+
+XMFLOAT3 CTerrain::CalculNormale(int x, int y)
+{
+	XMVECTOR n1;
+	XMVECTOR n2;
+	XMVECTOR n3;
+	XMVECTOR n4;
+	XMVECTOR v1;
+	XMVECTOR v2;
+	XMVECTOR v3;
+	XMVECTOR v4;
+	n1 = n2 = n3 = n4 = XMVectorSet(0, 0, 1, 0); // Le Z est le haut
+	// v1 = p1 – p0, etc...
+	if (y < DIMMENSIONY -1) v1 = ObtenirPosition(x, y + 1) - ObtenirPosition(x, y);
+	if (x < DIMMENSIONX -1) v2 = ObtenirPosition(x + 1, y) - ObtenirPosition(x, y);
+	if (y > 0) v3 = ObtenirPosition(x, y - 1) - ObtenirPosition(x, y);
+	if (x > 0) v4 = ObtenirPosition(x - 1, y) - ObtenirPosition(x, y);
+	// les produits vectoriels
+	if (y < DIMMENSIONY-1  && x < DIMMENSIONX-1) n1 = XMVector3Cross(v1, v2);
+	if (y > 0 && x < DIMMENSIONX-1) n2 = XMVector3Cross(v2, v3);
+	if (y > 0 && x > 0) n3 = XMVector3Cross(v3, v4);
+	if (y < DIMMENSIONY-1 && x > 0) n4 = XMVector3Cross(v4, v1);
+	n1 = n1 + n2 + n3 + n4;
+	n1 = XMVector3Normalize(n1);
+	XMFLOAT3 resultat;
+	XMStoreFloat3(&resultat, n1);
+	return resultat;
 }

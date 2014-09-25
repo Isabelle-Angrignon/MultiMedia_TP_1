@@ -14,7 +14,7 @@ private:
 	XMFLOAT3 _normale;
 public:
 
-	int getNbrSommets();
+	static int getNbrSommets();
 	XMFLOAT3 getPos();
 	XMFLOAT3 getNormal();
 	void setPos(XMFLOAT3 pos);
