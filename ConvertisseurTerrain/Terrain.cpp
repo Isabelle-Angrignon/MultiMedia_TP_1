@@ -52,6 +52,7 @@ int CTerrain::getNbrPolygone()
 CTerrain::~CTerrain()
 {
 	delete[] _tabSommet;
+	delete[] _tabIndex;
 }
 // XMLODA
 
