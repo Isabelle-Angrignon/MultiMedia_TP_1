@@ -25,6 +25,7 @@ int main() {
 	EnregistrerTout(leTerrain); 
 
 	LireTout();
+	CTerrain nouveauTerrain("converti.ter");
 	
 	return 0;
 }

@@ -5,6 +5,27 @@
 
 #include "Terrain.h"
 
+
+CTerrain::CTerrain(string nomfichier)
+{
+	_tabSommet = new CSommet[DIMMENSIONX * DIMMENSIONY];
+	_tabIndex = new int[(DIMMENSIONX - 1) * (DIMMENSIONY - 1) * 6];
+
+	//mettre dans fichier .custom
+	ifstream f;
+	f.open(nomfichier, ios::in | ios_base::binary);
+
+	f.read((char*)_tabSommet, DIMMENSIONX * DIMMENSIONY * sizeof(CSommet));
+	f.read((char*)_tabIndex, (DIMMENSIONX - 1) * (DIMMENSIONY - 1) * 6 * sizeof(int));
+
+	//pour test
+	//int tab[100];
+	//for (int i = 0; i < 100; i++)tab[i] = _tabIndex[i];
+	
+	f.close();
+}
+
+
 CTerrain::CTerrain()
 {
 	_tabSommet = new CSommet[DIMMENSIONX * DIMMENSIONY];
@@ -28,12 +49,12 @@ CTerrain::CTerrain()
 			// Initialisation de l'index
 			if (x < DIMMENSIONX - 1 && y < DIMMENSIONY - 1)
 			{
-				_tabIndex[k++] = y*DIMMENSIONX + 1;
-				_tabIndex[k++] = (y + 1)*DIMMENSIONX + x;
-				_tabIndex[k++] = (y + 1)*DIMMENSIONX + x + 1;
 				_tabIndex[k++] = y*DIMMENSIONX + x;
-				_tabIndex[k++] = (y + 1)*DIMMENSIONX + x + 1;
-				_tabIndex[k++] = y*DIMMENSIONX + x + 1;
+				_tabIndex[k++] = (y + 1) * DIMMENSIONX + (x + 1);
+				_tabIndex[k++] = y*DIMMENSIONX + (x + 1);
+				_tabIndex[k++] = y*DIMMENSIONX + x;
+				_tabIndex[k++] = (y + 1)* DIMMENSIONX + x;
+				_tabIndex[k++] = (y + 1)* DIMMENSIONX + (x + 1);
 			}
 		}
 	}
@@ -79,10 +100,10 @@ XMFLOAT3 CTerrain::CalculNormale(int x, int y)
 	if (y > 0) v3 = ObtenirPosition(x, y - 1) - ObtenirPosition(x, y);
 	if (x > 0) v4 = ObtenirPosition(x - 1, y) - ObtenirPosition(x, y);
 	// les produits vectoriels
-	if (y < DIMMENSIONY-1  && x < DIMMENSIONX-1) n1 = XMVector3Cross(v1, v2);
-	if (y > 0 && x < DIMMENSIONX-1) n2 = XMVector3Cross(v2, v3);
-	if (y > 0 && x > 0) n3 = XMVector3Cross(v3, v4);
-	if (y < DIMMENSIONY-1 && x > 0) n4 = XMVector3Cross(v4, v1);
+	if (y < DIMMENSIONY-1  && x < DIMMENSIONX-1) n1 = XMVector3Cross(v2, v1);
+	if (y > 0 && x < DIMMENSIONX-1) n2 = XMVector3Cross(v3, v2);
+	if (y > 0 && x > 0) n3            = XMVector3Cross(v4, v3);
+	if (y < DIMMENSIONY-1 && x > 0) n4 = XMVector3Cross(v1, v4);
 	n1 = n1 + n2 + n3 + n4;
 	n1 = XMVector3Normalize(n1);
 	XMFLOAT3 resultat;

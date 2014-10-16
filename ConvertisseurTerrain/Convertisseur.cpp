@@ -1,7 +1,7 @@
 //Isabelle Angrignon, Mathieu Dumoulin et Simon Bouchard
 //16 septembre 2014
 //Définitions fonctions utilitaires
-//
+
 
 #include "Convertisseur.h"
 
@@ -32,7 +32,7 @@ void ConstruireHauteursTerrain(char* tabByte, CTerrain &leTerrain)
 		for (int x = 0; x < M; ++x)
 		{			
 			z = (unsigned char)tabByte[y*M + x];			
-			leTerrain._tabSommet[y*M + x].setPosZ(z);
+			leTerrain._tabSommet[y*M + x].setPosZ(z * ECHELLE_Z);
 		}			
 	}
 
@@ -52,7 +52,7 @@ void ConstruireHauteursTerrain(char* tabByte, CTerrain &leTerrain)
 //enregirstre l'objet dans un fichier 
 void EnregistrerTout(CTerrain &leTerrain)
 {
-	string fichier = "converti.terrain";
+	string fichier = "converti.ter";
 	//mettre dans fichier .custom
 	ofstream f;
 	f.open(fichier, ios::out | ios_base::binary);
@@ -67,12 +67,24 @@ void LireTout()
 {
 	CSommet test[500];
 
-	string fichier = "converti.terrain";
+	string fichier = "converti.ter";
 	//mettre dans fichier .custom
 	ifstream f;
 	f.open(fichier, ios::in | ios_base::binary);
 
 	f.read((char*)test, 500*sizeof(CSommet));
 	
+	f.close();
+}
+void LireTout(string fichier)
+{
+	CSommet test[500];
+	
+	//mettre dans fichier .custom
+	ifstream f;
+	f.open(fichier, ios::in | ios_base::binary);
+
+	f.read((char*)test, 500 * sizeof(CSommet));
+
 	f.close();
 }
