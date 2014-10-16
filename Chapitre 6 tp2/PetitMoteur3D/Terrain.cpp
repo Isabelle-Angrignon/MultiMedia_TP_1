@@ -201,12 +201,26 @@ void CTerrain::Draw()
 	ID3DX11EffectConstantBuffer* pCB = pEffet->GetConstantBufferByName("param");  // Nous n'avons qu'un seul CBuffer
 	pCB->SetConstantBuffer(pConstantBuffer);
 
+   // Activation de la texture   /////////////////////////////////////////////////////
+   ID3DX11EffectShaderResourceVariable* variableTexture;
+   variableTexture = pEffet->GetVariableByName("textureEntree")->AsShaderResource();
+   variableTexture->SetResource(pTextureD3D);
+
+   // Le sampler state
+   ID3DX11EffectSamplerVariable* variableSampler;
+   variableSampler = pEffet->GetVariableByName("SampleState")->AsSampler();
+   variableSampler->SetSampler(0, pSampleState);   /////////////////////////////////////
+
 	// **** Rendu de l'objet	  
 	pPasse->Apply(0, pImmediateContext);
 
-	pImmediateContext->DrawIndexed(256*256*6, 0, 0);/////////////////////////////////////////////////////
+	pImmediateContext->DrawIndexed(256*256*6, 0, 0);
 }
 
+void CTerrain::SetTexture(CTexture* pTexture)  ////////////////////////////////
+{
+   pTextureD3D = pTexture->GetD3DTexture();
+}
 
 void CTerrain::InitEffet()
 {
@@ -255,5 +269,25 @@ void CTerrain::InitEffet()
 		vsCodeLen,
 		&pVertexLayout),
 		DXE_CREATIONLAYOUT);
+
+   // Initialisation des paramètres de sampling de la texture           /////////////////////////////////
+   D3D11_SAMPLER_DESC samplerDesc;
+
+   samplerDesc.Filter = D3D11_FILTER_ANISOTROPIC;
+   samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+   samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+   samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+   samplerDesc.MipLODBias = 0.0f;
+   samplerDesc.MaxAnisotropy = 4;
+   samplerDesc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+   samplerDesc.BorderColor[0] = 0;
+   samplerDesc.BorderColor[1] = 0;
+   samplerDesc.BorderColor[2] = 0;
+   samplerDesc.BorderColor[3] = 0;
+   samplerDesc.MinLOD = 0;
+   samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
+
+   // Création de l'état de sampling
+   pD3DDevice->CreateSamplerState(&samplerDesc, &pSampleState);      ///////////////////////////////////
 
 }

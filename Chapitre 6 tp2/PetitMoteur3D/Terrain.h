@@ -6,9 +6,9 @@
 
 #pragma once
 #include "Sommet.h"
+#include "Texture.h"
 #include <string>
 #include <fstream>
-
 
 #include "d3dx11effect.h"
 #include "Objet3D.h"
@@ -43,6 +43,8 @@ public:
 	XMVECTOR ObtenirPosition(int x, int y);
 
 	void Draw();
+
+   void SetTexture(CTexture* pTexture);///////////////
 	
 
 protected:
@@ -76,6 +78,8 @@ protected:
 	ID3DX11EffectTechnique* pTechnique;
 	ID3DX11EffectPass* pPasse;
 	ID3D11InputLayout* pVertexLayout;
+   ID3D11ShaderResourceView* pTextureD3D;
+   ID3D11SamplerState* pSampleState;
 
 };
 

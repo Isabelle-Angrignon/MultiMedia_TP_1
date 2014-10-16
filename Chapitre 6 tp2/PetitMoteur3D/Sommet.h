@@ -27,6 +27,9 @@ public:
 	void setPosZ(float z);
 
 	CSommet();
+   CSommet(XMFLOAT3 _position, XMFLOAT3 _normal, XMFLOAT2 _coordTex = XMFLOAT2(0, 0));/////////////
 	~CSommet();
+protected:
+   XMFLOAT2 coordTex;////////////////
 };
 
