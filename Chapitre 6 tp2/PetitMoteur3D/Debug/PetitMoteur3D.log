@@ -1,0 +1,28 @@
+﻿La génération a démarré 2014-10-09 17:00:59.
+     1>Projet "C:\Users\Isabelle\Documents\GitHub\MultiMedia_TP_1\Chapitre 6 tp2\PetitMoteur3D\PetitMoteur3D.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\PetitMoteur3D.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Terrain.cpp
+         Terrain.cpp
+         c:\program files (x86)\windows kits\8.1\include\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Isabelle\Documents\GitHub\MultiMedia_TP_1\Chapitre 6 tp2\Debug\PetitMoteur3D.exe" /INCREMENTAL /NOLOGO dxguid.lib winmm.lib d3d11.lib d3dcompiler.lib DXGI.lib effects11d.lib dinput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Isabelle\Documents\GitHub\MultiMedia_TP_1\Chapitre 6 tp2\Debug\PetitMoteur3D.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"C:\Users\Isabelle\Documents\GitHub\MultiMedia_TP_1\Chapitre 6 tp2\Debug\PetitMoteur3D.lib" /MACHINE:X86 /SAFESEH:NO Debug\PetitMoteur3D.res
+         Debug\Bloc.obj
+         Debug\BlocEffet1.obj
+         Debug\Camera.obj
+         Debug\DIManipulateur.obj
+         Debug\dispositifD3D11.obj
+         Debug\InfoDispositif.obj
+         Debug\Moteur.obj
+         Debug\MoteurWindows.obj
+         Debug\PetitMoteur3D.obj
+         Debug\Sommet.obj
+         Debug\sommetbloc.obj
+         Debug\stdafx.obj
+         Debug\Terrain.obj
+         Effects11d.lib
+         PetitMoteur3D.vcxproj -> C:\Users\Isabelle\Documents\GitHub\MultiMedia_TP_1\Chapitre 6 tp2\Debug\PetitMoteur3D.exe
+     1>Génération du projet "C:\Users\Isabelle\Documents\GitHub\MultiMedia_TP_1\Chapitre 6 tp2\PetitMoteur3D\PetitMoteur3D.vcxproj" terminée (Build cible(s)).
+
+La génération a réussi.
+
+Temps écoulé 00:00:00.83
