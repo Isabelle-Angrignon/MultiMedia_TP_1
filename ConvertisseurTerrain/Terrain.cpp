@@ -45,7 +45,7 @@ CTerrain::CTerrain()
 			t.x = x * ECHELLE;
 			_tabSommet[y*DIMMENSIONY + x].setPos(t);
 			_tabSommet[y*DIMMENSIONY + x].setNormal(n);
-
+			_tabSommet[y*DIMMENSIONY + x].setTextCoord(x, y);
 			// Initialisation de l'index
 			if (x < DIMMENSIONX - 1 && y < DIMMENSIONY - 1)
 			{

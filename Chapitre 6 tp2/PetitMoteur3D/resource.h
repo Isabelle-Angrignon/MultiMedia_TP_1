@@ -27,6 +27,7 @@
 #define ERREUR_CREATION_DIRECTINPUT     118
 #define ERREUR_CREATION_CLAVIER         119
 #define ERREUR_CREATION_FORMATCLAVIER   120
+#define DXE_FICHIERTEXTUREINTROUVABLE   121  //////////////////ajouté manuellement
 #define IDR_MAINFRAME                   128
 #define IDC_STATIC                      -1
 

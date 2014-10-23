@@ -8,7 +8,7 @@
 #include "Bloc.h"
 #include "BlocEffet1.h"
 #include "DIManipulateur.h"
-
+#include "GestionnaireDeTextures.h"
 #include "Terrain.h"
 
 namespace PM3D
@@ -209,18 +209,19 @@ namespace PM3D
 
 	bool InitObjets()
 	{
-		CBlocEffet1* pBloc;
+		//CBlocEffet1* pBloc;
 		CTerrain* pTerrain;
 
 		//Création d'un terrain à partir de notre fichier converti...
 		pTerrain = new CTerrain("Converti.ter", pDispositif);
+		pTerrain->SetTexture(TexturesManager.GetNewTexture(L"Texture_Gravier.dds", pDispositif));
 
 		// Création d'un cube de 2 X 2 X 2 unités
 		// Le bloc est créé dans notre programme et sur le dispositif
-		pBloc = new CBlocEffet1( 2, 2, 2, pDispositif );
+		//pBloc = new CBlocEffet1( 2, 2, 2, pDispositif );
 		
 		// Puis, il est ajouté à la scène
-		ListeScene.push_back(pBloc);
+		//ListeScene.push_back(pBloc);
 		ListeScene.push_back(pTerrain);
 				
 		return true;
@@ -262,6 +263,9 @@ namespace PM3D
 		XMMATRIX matView;
 		XMMATRIX matProj;
 		XMMATRIX matViewProj;
+
+		CGestionnaireDeTextures TexturesManager;
+
 
     };
 

@@ -6,10 +6,11 @@
 
 #include "StdAfx.h"
 
+#include "MoteurWindows.h"
 #include "Terrain.h"
 #include "util.h"
 #include "resource.h"
-#include "MoteurWindows.h"
+
 
 using namespace UtilitairesDX;
 

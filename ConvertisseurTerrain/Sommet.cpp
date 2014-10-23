@@ -9,6 +9,8 @@ int CSommet::_nbrSommets = 0;
 CSommet::CSommet()
 {
 	++_nbrSommets;
+	coordTex.x = _pos.x;
+	coordTex.y = _pos.y;
 }
 
 XMFLOAT3 CSommet::getNormal()
@@ -45,4 +47,10 @@ void CSommet::setPosZ(float z)
 CSommet::~CSommet()
 {
 	--_nbrSommets;
+}
+
+void CSommet::setTextCoord(float x, float y)
+{
+	coordTex.x = x;
+	coordTex.y = y;
 }

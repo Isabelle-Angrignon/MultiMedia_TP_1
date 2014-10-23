@@ -20,8 +20,12 @@ public:
 	void setPos(XMFLOAT3 pos);
 	void setNormal(XMFLOAT3 normal);
 	void setPosZ(float z);
+	void setTextCoord(float x, float y);
 
 	CSommet();
 	~CSommet();
+		
+protected:
+	XMFLOAT2 coordTex;////////////////
 };
 
